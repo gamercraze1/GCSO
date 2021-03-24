@@ -1,6 +1,6 @@
 
 var engine,world;
-var weight,speed,calculation
+var weight,speed
 var car,wall 
 
 function setup() {
@@ -11,16 +11,20 @@ function setup() {
   car=createSprite(50,200,50,50);
   speed=random(55,90);
   weight=random(400,1500)
+
   
   car.velocityX=speed
-  deformation();
+  
   
 }
 
 function draw() {
 
-  calculation=(0.5*weight*speed*speed)/22500
+  
   if(car.isTouching(wall)){
+    for(var x = 0;x<1;x=x+1){
+    deformation();
+    }
     car.velocityX=0
     
   }
@@ -29,14 +33,14 @@ function draw() {
 }
 
 function deformation(){
-if(calculation==0){
- car.shapecolor =color(0,0,0)
-}else if(calculation<100&&calculation>0){
-  car.shapecolor =color(0,255,0)
-}else if(calculation>100&&calculation<180){
-  car.shapecolor =color(220,220,0)
-}else if(calculation>180){
-  car.shapecolor =color(255,0,0)
+if((0.5*weight*speed*speed)/22500==0){
+ car.shapeColor=color(0,0,0)
+}else if((0.5*weight*speed*speed)/22500<100&&(0.5*weight*speed*speed)/22500>0){
+  car.shapeColor=color(0,255,0)
+}else if((0.5*weight*speed*speed)/22500>100&&(0.5*weight*speed*speed)/22500<180){
+  car.shapeColor=color(220,220,0)
+}else if((0.5*weight*speed*speed)/22500>180){
+  car.shapeColor=color(255,0,0);
 }
 
 }
